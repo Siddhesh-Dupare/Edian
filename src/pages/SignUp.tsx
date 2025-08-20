@@ -5,7 +5,7 @@ const SignUp = () => {
     return (
         <>
             <div className="">
-                <img src={ HikingBG } alt="Hiking Man" className="-scale-x-100 h-auto" />
+                <img src={ HikingBG } alt="Hiking Man" className="-scale-x-100 h-auto w-full" />
             </div>
         </>
     );

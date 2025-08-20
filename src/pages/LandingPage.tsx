@@ -44,18 +44,9 @@ const LandingPage = () => {
                         <p className="text-lg sm:text-xl lg:text-2xl text-gray-600">Most learners struggle because education platforms are rigid</p>
                         
                         <div className="mt-6 text-left">
-                            <div className="flex gap-5 flex items-center">
-                                <img src={ OpenBook } alt="Open book SVG" className="max-w-[30px] h-auto" />
-                                <p className="text-sm sm:text-xl lg:text-2xl text-gray-700">The same content for fast and slow learners.</p>
-                            </div>
-                            <div className="flex gap-5 flex justify-left items-center my-3">
-                                <img src={ World } alt="World SVG" className="max-w-[30px] h-auto" />
-                                <p className="text-sm sm:text-xl lg:text-2xl text-gray-700">Limited support for regional languages.</p>
-                            </div>
-                            <div className="flex gap-5 flex justify-left items-center my-3">
-                                <img src={ Suitcase } alt="World SVG" className="max-w-[30px] h-auto" />
-                                <p className="text-sm sm:text-xl lg:text-2xl text-gray-700">No direct link to career opportunities.</p>
-                            </div>
+                            <Offer imageLink={OpenBook} line="The same content for fast and slow learners." />
+                            <Offer imageLink={World} line="Limited support for regional languages." />
+                            <Offer imageLink={Suitcase} line="No direct link to career opportunities." />
                         </div>
                     </div>
 
@@ -72,54 +63,10 @@ const LandingPage = () => {
                     </div>
 
                     <div className="w-full flex flex-col lg:max-w-6xl lg:grid grid-cols-2 grid-rows-2 gap-4">
-                        <Card className="w-full">
-                            <CardHeader>
-                                <div className="flex items-center gap-8">
-                                    <img src={ RoboFace } alt="Robot Face" className="w-[40px] lg:max-w-[60px]"/>
-                                    <CardTitle className="text-xl lg:text-2xl">Adaptive AI Tutor</CardTitle>
-                                </div>
-                            </CardHeader>
-                            <CardDescription className="flex justify-center">
-                                <p className="text-lg text-center">Lessons and quizzes that adjust to your learning style</p>
-                            </CardDescription>
-                        </Card>
-
-                        <Card className="w-full">
-                            <CardHeader>
-                                <div className="flex items-center gap-8">
-                                    <img src={ Language } alt="Robot Face" className="w-[40px] lg:max-w-[60px]"/>
-                                    <CardTitle className="text-xl lg:text-2xl">Multi-Language Support</CardTitle>
-                                </div>
-                            </CardHeader>
-                            <CardDescription className="flex justify-center">
-                                <p className="text-lg text-center">Learn in English, Hindi, Marathi, or more</p>
-                            </CardDescription>
-                        </Card>
-
-                        <Card className="w-full">
-                            <CardHeader>
-                                <div className="flex items-center gap-8">
-                                    <img src={ StockUp } alt="Robot Face" className="w-[40px] lg:max-w-[60px]"/>
-                                    <CardTitle className="text-xl lg:text-2xl">Skill Gap Tracker</CardTitle>
-                                </div>
-                            </CardHeader>
-                            <CardDescription className="flex justify-center">
-                                <p className="text-lg text-center">See your strengths and areas for improvement</p>
-                            </CardDescription>
-                        </Card>
-
-                        <Card className="w-full">
-                            <CardHeader>
-                                <div className="flex items-center gap-8">
-                                    <img src={ Suitcase } alt="Robot Face" className="w-[40px] lg:max-w-[60px]"/>
-                                    <CardTitle className="text-xl lg:text-2xl">Career Path Guidance</CardTitle>
-                                </div>
-                            </CardHeader>
-                            <CardDescription className="flex justify-center">
-                                <p className="text-lg text-center">From learning to job opportunities</p>
-                            </CardDescription>
-                        </Card>
-                        
+                        <FeatureCard imageLink={RoboFace} cardTitle="Adaptive AI Tutor" cardDescription="Lessons and quizzes that adjust to your learning style" />
+                        <FeatureCard imageLink={Language} cardTitle="Multi-Language Support" cardDescription="Learn in English, Hindi, Marathi, or more" />
+                        <FeatureCard imageLink={StockUp} cardTitle="Skill Gap Tracker" cardDescription="See your strengths and areas for improvement" />
+                        <FeatureCard imageLink={Suitcase} cardTitle="Career Path Guidance" cardDescription="From learning to job opportunities" />                        
                     </div>
                 </div>
             </section>
@@ -164,6 +111,44 @@ const LandingPage = () => {
                     </div>
                 </div>
             </section>
+        </>
+    );
+}
+
+type FeatureCardProps = {
+    imageLink: string;
+    cardTitle: string;
+    cardDescription: string;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ imageLink, cardTitle, cardDescription }) => {
+    return (
+        <Card className="w-full">
+            <CardHeader>
+                <div className="flex items-center gap-8">
+                    <img src={ imageLink } alt="Robot Face" className="w-[40px] lg:max-w-[60px]"/>
+                    <CardTitle className="text-xl lg:text-2xl">{cardTitle}</CardTitle>
+                </div>
+            </CardHeader>
+            <CardDescription className="flex justify-center">
+                <p className="text-lg text-center">{cardDescription}</p>
+            </CardDescription>
+        </Card>
+    );
+}
+
+type OfferPoints = {
+    imageLink: string;
+    line: string;
+}
+
+const Offer: React.FC<OfferPoints> = ({ imageLink, line }) => {
+    return (
+        <>
+            <div className="flex gap-5 flex items-center my-1">
+                <img src={ imageLink } alt="Open book SVG" className="max-w-[30px] h-auto" />
+                <p className="text-sm sm:text-xl lg:text-2xl text-gray-700">{line}</p>
+            </div>
         </>
     );
 }
